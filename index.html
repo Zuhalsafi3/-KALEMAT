@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>معرفی نویسنده</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --fg: #000000;
+      --muted: #333333;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Tahoma",Arial;background:var(--bg);color:var(--fg);}
+    header{background:var(--fg);color:var(--bg);padding:20px;text-align:center}
+    header h1{margin:0;font-size:28px}
+    nav{margin-top:10px}
+    nav a{color:var(--bg);text-decoration:none;margin:0 8px;padding:6px 12px;border-radius:6px}
+    nav a:hover{background:var(--bg);color:var(--fg)}
+    section{display:none;max-width:800px;margin:20px auto;padding:20px}
+    section.active{display:block}
+    .btn{display:inline-block;margin-top:12px;padding:10px 16px;background:var(--fg);color:var(--bg);text-decoration:none;border-radius:6px}
+    .btn.outline{background:transparent;border:1px solid var(--fg);color:var(--fg)}
+    .book-meta{display:flex;gap:16px;flex-wrap:wrap}
+    .cover{width:180px;height:240px;border:2px dashed var(--fg);display:flex;align-items:center;justify-content:center}
+    form label{display:block;margin:12px 0}
+    input,textarea{width:100%;padding:8px;border:1px solid var(--muted);border-radius:6px;background:transparent;color:var(--fg)}
+    footer{text-align:center;padding:16px;border-top:1px solid var(--muted);margin-top:30px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>نام نویسنده</h1>
+    <p>نویسندهٔ رمان‌های رازآلود و دلنشین</p>
+    <nav>
+      <a href="#" onclick="showSection('home')">خانه</a>
+      <a href="#" onclick="showSection('about')">درباره من</a>
+      <a href="#" onclick="showSection('book')">کتاب</a>
+      <a href="#" onclick="showSection('contact')">تماس</a>
+    </nav>
+  </header>
+
+  <!-- خانه -->
+  <section id="home" class="active">
+    <h2>خوش آمدید</h2>
+    <p>این وب‌سایت برای معرفی کوتاه نویسنده و یک کتاب ساخته شده است.</p>
+    <a class="btn" onclick="showSection('book')">مشاهدهٔ کتاب</a>
+  </section>
+
+  <!-- درباره من -->
+  <section id="about">
+    <h2>دربارهٔ من</h2>
+    <p>اینجا یک زندگی‌نامهٔ کوتاه قرار می‌گیرد: تحصیلات، مسیر نویسندگی، انگیزه‌ها و موضوعات مورد علاقه.</p>
+    <h3>علایق</h3>
+    <ul>
+      <li>خواندن رمان‌های معمایی</li>
+      <li>نوشتن داستان‌های کوتاه</li>
+      <li>شرکت در جلسات ادبی</li>
+    </ul>
+  </section>
+
+  <!-- کتاب -->
+  <section id="book">
+    <h2>عنوان کتاب: راز شب</h2>
+    <div class="book-meta">
+      <div class="cover">جلد کتاب</div>
+      <div>
+        <p>توضیح کوتاه: داستانی معمایی دربارهٔ شهری پر از رازها...</p>
+        <p>تعداد صفحات: ۲۲۰ — سال انتشار: ۲۰۲۵</p>
+        <a class="btn" onclick="showSection('read')">خواندن نمونه</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- خواندن نمونه -->
+  <section id="read">
+    <h2>راز شب — نمونه</h2>
+    <p>فصل اول — متن نمونه. اینجا بخشی از کتاب قرار می‌گیرد.</p>
+    <p>فصل دوم — متن ادامه دارد...</p>
+    <a class="btn outline" onclick="showSection('end')">رفتن به صفحهٔ پایان کتاب</a>
+  </section>
+
+  <!-- پایان کتاب -->
+  <section id="end">
+    <h2>پایان کتاب</h2>
+    <p>از اینکه نمونه را خواندید سپاسگزارم. برای دریافت نسخهٔ کامل لطفاً تماس بگیرید.</p>
+    <a class="btn" onclick="showSection('contact')">تماس با نویسنده</a>
+  </section>
+
+  <!-- تماس -->
+  <section id="contact">
+    <h2>تماس با من</h2>
+    <form onsubmit="submitForm(event)">
+      <label>نام<input type="text" required></label>
+      <label>ایمیل<input type="email" required></label>
+      <label>شماره تلفن<input type="tel"></label>
+      <label>فیسبوک<input type="url" placeholder="https://facebook.com/yourpage"></label>
+      <label>اینستاگرام<input type="url" placeholder="https://instagram.com/username"></label>
+      <label>پیام<textarea rows="5" required></textarea></label>
+      <button class="btn" type="submit">ارسال</button>
+    </form>
+  </section>
+
+  <!-- تشکر -->
+  <section id="thankyou">
+    <h2>پیام شما ارسال شد</h2>
+    <p>متشکرم. در اسرع وقت پاسخ داده خواهد شد.</p>
+    <a class="btn" onclick="showSection('home')">بازگشت به خانه</a>
+  </section>
+
+  <footer>
+    © نام نویسنده
+  </footer>
+
+  <script>
+    function showSection(id){
+      document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0,0);
+    }
+    function submitForm(e){
+      e.preventDefault();
+      showSection('thankyou');
+    }
+  </script>
+</body>
+</html>
